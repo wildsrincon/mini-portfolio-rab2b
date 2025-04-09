@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { IProject } from '@/data'
+import { X } from 'lucide-vue-next'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
+
 const props = defineProps({
   show: {
     type: Boolean,
@@ -11,8 +13,11 @@ const props = defineProps({
     required: true,
   },
 })
+
 const emit = defineEmits(['close'])
+
 const isVisible = ref(props.show)
+
 // Update local state when prop changes
 watch(
   () => props.show,
@@ -20,26 +25,31 @@ watch(
     isVisible.value = newValue
   },
 )
+
 // Close the modal
 const closeModal = () => {
   isVisible.value = false
   emit('close')
 }
+
 // Close modal when escape key is pressed
 const handleKeyDown = (e: KeyboardEvent) => {
   if (e.key === 'Escape') {
     closeModal()
   }
 }
+
 // Add event listener for keyboard events
 onMounted(() => {
   document.addEventListener('keydown', handleKeyDown)
 })
+
 // Clean up event listener
 onUnmounted(() => {
   document.removeEventListener('keydown', handleKeyDown)
 })
 </script>
+
 <template>
   <teleport to="body">
     <transition
@@ -62,6 +72,7 @@ onUnmounted(() => {
           class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
           @click="closeModal"
         ></div>
+
         <!-- Modal content -->
         <div
           class="flex min-h-screen items-end justify-center p-4 text-center sm:items-center sm:p-0"
@@ -69,24 +80,22 @@ onUnmounted(() => {
           <div
             class="relative transform overflow-hidden rounded-lg bg-white dark:bg-gray-800 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-3xl"
           >
-            <!-- Close button -->
+            <!-- Close button with Lucide X icon -->
             <button
               @click="closeModal"
-              class="absolute right-4 top-4 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none"
+              class="absolute bg-gray-300 rounded-full right-4 top-4 text-gray-900 hover:text-gray-700 dark:hover:text-gray-600 focus:outline-none z-10 px-3 py-3"
             >
               <span class="sr-only">Close</span>
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+              <X class="h-6 w-6" />
             </button>
+
             <!-- Modal header with project image -->
             <div class="relative">
-              <img :src="project.image" :alt="project.title" class="w-full h-64 object- sm:h-72" />
+              <img
+                :src="project.image"
+                :alt="project.title"
+                class="w-full h-64 object-cover sm:h-72"
+              />
               <div
                 class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6"
               >
@@ -95,13 +104,14 @@ onUnmounted(() => {
                 </h3>
               </div>
             </div>
+
             <!-- Modal body -->
             <div class="px-6 py-4">
               <p class="text-gray-700 dark:text-gray-300 mb-4">
                 {{ project.description }}
               </p>
             </div>
-            <!-- Añadida esta etiqueta de cierre -->
+
             <!-- Modal footer with links -->
             <div class="bg-gray-50 dark:bg-gray-700 px-6 py-4 flex flex-wrap justify-end gap-3">
               <a

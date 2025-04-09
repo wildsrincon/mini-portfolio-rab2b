@@ -1,18 +1,50 @@
-# mini-portfolio-rab2b
+# Mini Portfolio - RAB2B
 
-This template should help get you started developing with Vue 3 in Vite.
+## 📌 Project Description
 
-## Recommended IDE Setup
+Mini Portfolio developed with Vue 3, TypeScript, and Tailwind CSS, designed to showcase professional information in an elegant and responsive manner.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 🚀 Technologies Used
 
-## Type Support for `.vue` Imports in TS
+### Main Frameworks and Libraries
+- **Vue 3**: Progressive JavaScript framework for building interfaces
+- **TypeScript**: JavaScript superset that adds static typing
+- **Tailwind CSS**: Utility-first styling framework
+- **Vite**: Ultra-fast build and development tool
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+### Additional Tools
+- **Vue Router**: Route management
+- **Pinia**: State management
+- **Composition API**: New component organization model in Vue
 
-## Customize configuration
+## 📂 Project Structure
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+mini-portfolio-rab2b/
+│
+├── public/                 # Public static files
+├── src/
+│   ├── assets/             # Resources like images, icons
+│   ├── components/         # Reusable Vue components
+│   ├── layouts/            # Page layout structures
+│   ├── views/              # Main application views
+│   ├── router/             # Route configuration
+│   ├── stores/             # State management with Pinia
+│   └── App.vue             # Root application component
+│
+├── index.html              # HTML entry point
+├── vite.config.ts          # Vite configuration
+├── tsconfig.json           # TypeScript configuration
+└── package.json            # Dependencies and scripts
+
+## 🔧 Main Features
+
+- Responsive design
+- Dynamic sections
+- Subtle animations
+- Performance optimization
+- Web accessibility
+- Light/dark theme
+
 
 ## Project Setup
 
