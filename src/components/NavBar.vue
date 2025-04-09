@@ -51,7 +51,49 @@ export default defineComponent({
       }))
     }
 
-    // Función para detectar qué sección está visible
+    // // Función para detectar qué sección está visible
+    // const checkActiveSection = (): void => {
+    //   // Si estamos en la parte superior de la página, activar el Home
+    //   if (window.scrollY < 100) {
+    //     const homeItem = menuItemsRef.value.find((item) => item.href === '#home')
+    //     if (homeItem) {
+    //       setActiveMenuItem('#home')
+    //       return
+    //     }
+    //   }
+
+    //   // Obtener todas las secciones que tienen un ID correspondiente a los enlaces del menú
+    //   const sections = menuItemsRef.value
+    //     .map((item) => {
+    //       // Extraer el ID del enlace (sin el #)
+    //       const targetId = item.href.startsWith('#') ? item.href.substring(1) : null
+    //       if (!targetId) return null
+
+    //       const element = document.getElementById(targetId)
+    //       if (!element) return null
+
+    //       return {
+    //         id: targetId,
+    //         href: item.href,
+    //         element,
+    //         top: element.getBoundingClientRect().top,
+    //       }
+    //     })
+    //     .filter(Boolean)
+
+    //   if (sections.length === 0) return
+
+    //   // Encontrar la sección más cercana a la parte superior de la ventana
+    //   const activeSection = sections.reduce((prev, current) => {
+    //     return current && Math.abs(current.top) < Math.abs(prev.top) ? current : prev
+    //   }, sections[0])
+
+    //   // Si la sección está dentro del viewport (con un margen)
+    //   if (activeSection && activeSection.top < window.innerHeight / 2) {
+    //     setActiveMenuItem(activeSection.href)
+    //   }
+    // }
+
     const checkActiveSection = (): void => {
       // Si estamos en la parte superior de la página, activar el Home
       if (window.scrollY < 100) {
@@ -72,23 +114,25 @@ export default defineComponent({
           const element = document.getElementById(targetId)
           if (!element) return null
 
+          // Usar getBoundingClientRect para obtener la posición relativa al viewport
+          const rect = element.getBoundingClientRect()
           return {
             id: targetId,
             href: item.href,
             element,
-            top: element.getBoundingClientRect().top,
+            top: rect.top,
           }
         })
-        .filter(Boolean)
+        .filter((section): section is NonNullable<typeof section> => section !== null)
 
       if (sections.length === 0) return
 
       // Encontrar la sección más cercana a la parte superior de la ventana
       const activeSection = sections.reduce((prev, current) => {
-        return current && Math.abs(current.top) < Math.abs(prev.top) ? current : prev
-      }, sections[0])
+        return Math.abs(current.top) < Math.abs(prev.top) ? current : prev
+      })
 
-      // Si la sección está dentro del viewport (con un margen)
+      // Si la sección está dentro del viewport (con un margen de la mitad de la altura)
       if (activeSection && activeSection.top < window.innerHeight / 2) {
         setActiveMenuItem(activeSection.href)
       }
