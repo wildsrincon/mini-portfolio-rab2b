@@ -57,7 +57,7 @@ onMounted(() => {
         </div>
         <div class="footer__social">
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/wildsrincon"
             target="_blank"
             rel="noopener noreferrer"
             class="footer__social-link"
@@ -78,7 +78,7 @@ onMounted(() => {
             </svg>
           </a>
           <a
-            href="https://linkedin.com/in/yourusername"
+            href="https://linkedin.com/in/wildsrincon"
             target="_blank"
             rel="noopener noreferrer"
             class="footer__social-link"
@@ -101,7 +101,7 @@ onMounted(() => {
             </svg>
           </a>
           <a
-            href="https://twitter.com/yourusername"
+            href="https://twitter.com/wildsrincon"
             target="_blank"
             rel="noopener noreferrer"
             class="footer__social-link"
